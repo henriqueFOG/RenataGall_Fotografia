@@ -53,7 +53,7 @@ export default function Contato() {
             <ListItemText
               primary={
                 <Link
-                  href="tel:+5511999999999"
+                  href="tel:+55112492952132"
                   underline="hover"
                   color="inherit"
                   sx={{ fontWeight: 'bold' }}
@@ -72,7 +72,7 @@ export default function Contato() {
             <ListItemText
               primary={
                 <Link
-                  href="https://wa.me/5511999999999"
+                  href="https://wa.me/5524992952132"
                   target="_blank"
                   underline="hover"
                   color="inherit"
