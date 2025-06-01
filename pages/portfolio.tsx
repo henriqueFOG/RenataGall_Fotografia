@@ -40,15 +40,19 @@ const albums: Album[] = [
       "/portfolio/concurso/concurso.jpg",
       "/portfolio/concurso/concursoRenata.jpg",
     ],
-  },
-  {
+  },  {
     id: 2,
     title: 'Aniversários',
-    cover: "",
+    cover: "/portfolio/aniversario/aniversario_heitor_bolo.jpg",
     images: [
-      "",
-      '/albums/corporativo/img2.jpg',
-      '/albums/corporativo/img3.jpg'
+      "/portfolio/aniversario/aniversario_heitor_bolo.jpg",
+      "/portfolio/aniversario/aniversario_heitor_piscina_de_bolinhas.jpg",
+      "/portfolio/aniversario/aniversario_heitor_piscina_de_bolinhas2.jpg",
+      "/portfolio/aniversario/aniversario_heitor_piscina_de_bolinhas3.jpg",
+      "/portfolio/aniversario/aniversario_heitor.jpg",
+      "/portfolio/aniversario/aniversario_julia_luiza_bolo.jpg",
+      "/portfolio/aniversario/aniversario_julia_luiza_bolo2.jpg",
+      "/portfolio/aniversario/aniversario_julia_luiza_coracao.jpg"
     ],
   },
   {
