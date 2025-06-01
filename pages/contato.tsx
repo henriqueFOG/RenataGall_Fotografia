@@ -24,7 +24,7 @@ export default function Contato() {
         Contato
       </Typography>
 
-      {/* Seção de Contato com Informações e Links */}
+      {/* Seção de Contato com Informações e Links*/}
       <Box
         component={motion.div}
         initial={{ opacity: 0, x: -50 }}
