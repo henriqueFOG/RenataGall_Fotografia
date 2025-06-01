@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from '../components/navbar'; // Ajuste o caminho conforme necessário
+import '../styles/global.css';
 
 const theme = createTheme({
   palette: {
