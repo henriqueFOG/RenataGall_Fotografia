@@ -40,8 +40,16 @@ const albums: Album[] = [
     images: [
       "/portfolio/concurso/concurso.jpg",
       "/portfolio/concurso/concursoRenata.jpg",
-    ],
-  },  {
+      "/portfolio/concurso/concurso_vinicola_arouca.jpg",
+      "/portfolio/concurso/concurso_vinicola_arouca2.jpg",
+      "/portfolio/concurso/concurso_vinicola_arouca3.jpg",
+      "/portfolio/concurso/concurso_vinicola_arouca4.jpg",
+      "/portfolio/concurso/concurso_vinicola_arouca5.jpg",
+      "/portfolio/concurso/concurso_vinicola_arouca6.jpg",
+      "/portfolio/concurso/concurso_vinicola_arouca7.jpg",
+      "/portfolio/concurso/concurso_vinicola_arouca8.jpg",    ],
+  },
+  {
     id: 2,
     title: 'Aniversários',
     cover: "/portfolio/aniversario/aniversario_heitor_bolo.jpg",
@@ -71,13 +79,25 @@ const albums: Album[] = [
       "/portfolio/cachacaria/Cachaças_Itajoana2.jpg",
       "/portfolio/cachacaria/Chachaçaria_Itajoana.jpg",
     ],
-  },
-  {
+  },  {
     id: 4,
     title: 'Ensaios',
     cover: "/portfolio/ensaios/Ensaios_Itajoana.jpg",
     images: [
+      "/portfolio/ensaios/Ensaios_Itajoana.jpg",
       "/portfolio/ensaios/ensaio_itajoana_sorrindo.jpg",
+      "/portfolio/ensaios/ensaio_henrique_bruna.jpg",
+      "/portfolio/ensaios/ensaio_henrique_bruna_costas.jpg",
+      "/portfolio/ensaios/ensaio_henrique_bruna_costas2.jpg",
+    ],
+  },
+  {
+    id: 5,
+    title: 'Ensaio de Produtos',
+    cover: "/portfolio/Ensaio_de_produtos/fudge.jpg",
+    images: [
+      "/portfolio/Ensaio_de_produtos/fudge.jpg",
+      "/portfolio/Ensaio_de_produtos/fudge2.jpg",
     ],
   },
 ];

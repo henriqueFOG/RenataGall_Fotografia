@@ -26,8 +26,10 @@ export default function Home() {
   // Defina as fotos que serão exibidas no slider
   const photos = [
     // Fotos de concurso
+    "/portfolio/home/renata_fotografa.jpg",
     "/portfolio/concurso/concursoRenata.jpg",
     "/portfolio/concurso/concurso.jpg",
+    
     
     
     // Fotos de aniversário
