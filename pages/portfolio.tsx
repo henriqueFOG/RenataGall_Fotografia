@@ -22,24 +22,58 @@ interface Album {
 }
 
 const albums: Album[] = [
+  // {
+  //   id: 1,
+  //   title: 'Casamentos',
+  //   cover: '/albums/casamento/cover.jpg',
+  //   images: [
+  //     '/albums/casamento/img1.jpg',
+  //     '/albums/casamento/img2.jpg',
+  //     '/albums/casamento/img3.jpg'
+  //   ],
+  // },
   {
     id: 1,
-    title: 'Casamentos',
-    cover: '/albums/casamento/cover.jpg',
+    title: 'Concursos',
+    cover: "/portfolio/concurso/concursoRenata.jpg",
     images: [
-      '/albums/casamento/img1.jpg',
-      '/albums/casamento/img2.jpg',
-      '/albums/casamento/img3.jpg'
+      "/portfolio/concurso/concurso.jpg",
+      "/portfolio/concurso/concursoRenata.jpg",
     ],
   },
   {
     id: 2,
-    title: 'Retratos',
-    cover: "/portfolio/concurso.jpg",
+    title: 'Aniversários',
+    cover: "",
     images: [
-      "/images/renataGall.png",
-      "/portfolio/concurso.jpg",
-      "/portfolio/concursoRenata.jpg",
+      "",
+      '/albums/corporativo/img2.jpg',
+      '/albums/corporativo/img3.jpg'
+    ],
+  },
+  {
+    id: 3,
+    title: 'Cachaçarias',
+    cover: "/portfolio/cachacaria/arara_cachaçaria.jpg",
+    images: [
+      "/portfolio/cachacaria/arara_cachaçaria.jpg",
+      "/portfolio/cachacaria/arara_cachaçaria_asas.jpg",
+      "/portfolio/cachacaria/arara_cachaçaria_lago.jpg",
+      "/portfolio/cachacaria/arara_cachaçaria_lago2.jpg",
+      "/portfolio/cachacaria/arara_cachaçaria_lago3.jpg",
+      "/portfolio/cachacaria/cachaçaria_itajoana_adega.jpg",
+      "/portfolio/cachacaria/cachaçaria_itajoana_lago.jpg",
+      "/portfolio/cachacaria/Cachaças_Itajoana.jpg",
+      "/portfolio/cachacaria/Cachaças_Itajoana2.jpg",
+      "/portfolio/cachacaria/Chachaçaria_Itajoana.jpg",
+    ],
+  },
+  {
+    id: 4,
+    title: 'Ensaios',
+    cover: "/portfolio/ensaios/Ensaios_Itajoana.jpg",
+    images: [
+      "/portfolio/ensaios/ensaio_itajoana_sorrindo.jpg",
     ],
   },
 ];
