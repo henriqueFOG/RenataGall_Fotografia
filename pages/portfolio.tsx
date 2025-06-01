@@ -66,18 +66,19 @@ const albums: Album[] = [
   {
     id: 3,
     title: 'Cachaçarias',
-    cover: "/portfolio/cachacaria/arara_cachaçaria.jpg",
+    cover: "/portfolio/cachacaria/Cachaças_Itajoana2.jpg", 
     images: [
+      "/portfolio/cachacaria/Cachaças_Itajoana2.jpg", 
+      "/portfolio/cachacaria/Cachaças_Itajoana.jpg",
+      "/portfolio/cachacaria/cachaçaria_itajoana_adega.jpg",
+      "/portfolio/cachacaria/Chachaçaria_Itajoana.jpg",
+      "/portfolio/cachacaria/cachaçaria_itajoana_lago.jpg",
       "/portfolio/cachacaria/arara_cachaçaria.jpg",
       "/portfolio/cachacaria/arara_cachaçaria_asas.jpg",
       "/portfolio/cachacaria/arara_cachaçaria_lago.jpg",
       "/portfolio/cachacaria/arara_cachaçaria_lago2.jpg",
       "/portfolio/cachacaria/arara_cachaçaria_lago3.jpg",
-      "/portfolio/cachacaria/cachaçaria_itajoana_adega.jpg",
-      "/portfolio/cachacaria/cachaçaria_itajoana_lago.jpg",
-      "/portfolio/cachacaria/Cachaças_Itajoana.jpg",
-      "/portfolio/cachacaria/Cachaças_Itajoana2.jpg",      
-      "/portfolio/cachacaria/Chachaçaria_Itajoana.jpg",
+      
     ],
   },
   {
