@@ -76,10 +76,11 @@ const albums: Album[] = [
       "/portfolio/cachacaria/cachaçaria_itajoana_adega.jpg",
       "/portfolio/cachacaria/cachaçaria_itajoana_lago.jpg",
       "/portfolio/cachacaria/Cachaças_Itajoana.jpg",
-      "/portfolio/cachacaria/Cachaças_Itajoana2.jpg",
+      "/portfolio/cachacaria/Cachaças_Itajoana2.jpg",      
       "/portfolio/cachacaria/Chachaçaria_Itajoana.jpg",
     ],
-  },  {
+  },
+  {
     id: 4,
     title: 'Ensaios',
     cover: "/portfolio/ensaios/Ensaios_Itajoana.jpg",
