@@ -1,7 +1,8 @@
 // pages/index.tsx
 import React, { useRef, useEffect, useState } from "react";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box, IconButton } from "@mui/material";
 import { motion } from "framer-motion";
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import Image from "next/image";
 
 // Variantes para animação dos container e itens
@@ -21,18 +22,19 @@ const itemVariants = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function Home() {  // Defina as fotos que serão exibidas no slider
+export default function Home() {
+  // Defina as fotos que serão exibidas no slider
   const photos = [
     // Fotos de concurso
-    "/portfolio/concurso/concurso.jpg",
     "/portfolio/concurso/concursoRenata.jpg",
+    "/portfolio/concurso/concurso.jpg",
+    
     
     // Fotos de aniversário
     "/portfolio/aniversario/aniversario_heitor_bolo.jpg",
     "/portfolio/aniversario/aniversario_heitor_piscina_de_bolinhas.jpg",
     "/portfolio/aniversario/aniversario_heitor_piscina_de_bolinhas2.jpg",
     "/portfolio/aniversario/aniversario_heitor_piscina_de_bolinhas3.jpg",
-    "/portfolio/aniversario/aniversario_heitor.jpg",
     "/portfolio/aniversario/aniversario_julia_luiza_bolo.jpg",
     "/portfolio/aniversario/aniversario_julia_luiza_bolo2.jpg",
     "/portfolio/aniversario/aniversario_julia_luiza_coracao.jpg",
@@ -54,18 +56,58 @@ export default function Home() {  // Defina as fotos que serão exibidas no slid
     "/portfolio/ensaios/Ensaios_Itajoana.jpg"
   ];
 
-  // Referência para o container do carrossel para calcular a largura arrastável
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [dragWidth, setDragWidth] = useState(0);
+  // Estados para controle do carrossel
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Função para ir para a próxima imagem
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % photos.length; // Garante que o índice volte ao início
+      return newIndex;
+    });
+  };
+
+  // Função para ir para a imagem anterior
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex - 1 + photos.length) % photos.length; // Garante que o índice vá para o final ao ultrapassar o início
+      return newIndex;
+    });
+  };
+
+  // Ajuste no useEffect para evitar reinicializações desnecessárias
   useEffect(() => {
-    if (carouselRef.current) {
-      // Calcula a largura total que pode ser arrastada (scrollWidth menos a largura visível)
-      setDragWidth(
-        carouselRef.current.scrollWidth - carouselRef.current.offsetWidth
-      );
+    if (isAutoPlaying) {
+      if (!intervalRef.current) {
+        intervalRef.current = setInterval(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
+        }, 3000);
+      }
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     }
-  }, []);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [isAutoPlaying]);
+
+  // Pausar autoplay quando hover
+  const handleMouseEnter = () => {
+    setIsAutoPlaying(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsAutoPlaying(true);
+  };
 
   return (
     <Container maxWidth="lg">
@@ -92,38 +134,136 @@ export default function Home() {  // Defina as fotos que serão exibidas no slid
             criatividade. Essa vitória me inspira a criar imagens que contam
             histórias e capturam emoções de maneira única.
           </Typography>
-        </motion.div>
-        <motion.div variants={itemVariants}>
-          {/* Área do slider de imagens */}
-          <Box sx={{ overflow: "hidden", mb: 2 }}>
-            <motion.div
-              ref={carouselRef}
-              drag="x"
-              dragConstraints={{ right: 0, left: -dragWidth }}
-              style={{ display: "flex", gap: "1rem", cursor: "grab" }}
+        </motion.div>        <motion.div variants={itemVariants}>
+          {/* Área do slider de imagens com setas e autoplay */}
+          <Box 
+            sx={{ 
+              position: 'relative',
+              overflow: "hidden", 
+              mb: 2,
+              maxWidth: '100%'
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* Container das imagens */}
+            <Box
+              sx={{
+                display: 'flex',
+                transform: `translateX(-${currentIndex * (100 / photos.length)}%)`,
+                transition: 'transform 0.5s ease-in-out',
+                width: `${photos.length * 100}%`
+              }}
             >
               {photos.map((src, index) => (
                 <Box
                   key={index}
                   sx={{
-                    minWidth: 300,
-                    height: 300,
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    boxShadow: 3,
-                    border: "4px solid #1976d2",
-                    position: "relative",
+                    width: `${100 / photos.length}%`,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    px: 1
                   }}
                 >
-                  <Image
-                    src={src}
-                    alt={`Renata Gall - Imagem ${index + 1}`}
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
+                  <Box
+                    sx={{
+                      width: { xs: 250, sm: 300, md: 350 },
+                      height: { xs: 250, sm: 300, md: 350 },
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                      boxShadow: 3,
+                      border: "4px solid #1976d2",
+                      position: "relative",
+                      transition: 'transform 0.3s ease',
+                      '&:hover': {
+                        transform: 'scale(1.05)'
+                      }
+                    }}
+                  >
+                    <Image
+                      src={src}
+                      alt={`Renata Gall - Imagem ${index + 1}`}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      priority={index < 3}
+                    />
+                  </Box>
                 </Box>
               ))}
-            </motion.div>
+            </Box>
+
+            {/* Seta esquerda */}
+            <IconButton
+              onClick={prevSlide}
+              sx={{
+                position: 'absolute',
+                left: { xs: 8, md: 16 },
+                top: '50%',
+                transform: 'translateY(-50%)',
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                color: '#1976d2',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  transform: 'translateY(-50%) scale(1.1)'
+                },
+                zIndex: 2,
+                boxShadow: 2,
+                transition: 'all 0.3s ease'
+              }}
+            >
+              <ArrowBackIos />
+            </IconButton>
+
+            {/* Seta direita */}
+            <IconButton
+              onClick={nextSlide}
+              sx={{
+                position: 'absolute',
+                right: { xs: 8, md: 16 },
+                top: '50%',
+                transform: 'translateY(-50%)',
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                color: '#1976d2',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  transform: 'translateY(-50%) scale(1.1)'
+                },
+                zIndex: 2,
+                boxShadow: 2,
+                transition: 'all 0.3s ease'
+              }}
+            >
+              <ArrowForwardIos />
+            </IconButton>
+
+            {/* Indicadores de posição */}
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                mt: 2,
+                gap: 1
+              }}
+            >
+              {photos.map((_, index) => (
+                <Box
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  sx={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    backgroundColor: index === currentIndex ? '#1976d2' : 'rgba(0,0,0,0.3)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      backgroundColor: index === currentIndex ? '#1976d2' : 'rgba(0,0,0,0.5)'
+                    }
+                  }}
+                />
+              ))}
+            </Box>
           </Box>
         </motion.div>
         <motion.div variants={itemVariants}>

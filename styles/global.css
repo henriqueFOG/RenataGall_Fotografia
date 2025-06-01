@@ -7,3 +7,41 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
+
+/* Estilos personalizados para o carrossel */
+.slick-slider {
+  position: relative;
+}
+
+.slick-arrow {
+  z-index: 10;
+}
+
+.slick-dots {
+  bottom: -25px;
+}
+
+.slick-dots li button:before {
+  font-size: 10px;
+}
+
+/* Efeitos de transição suaves */
+.slick-slide img {
+  transition: transform 0.3s ease;
+}
+
+/* Efeito para carregamento das imagens */
+.slick-slide {
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+}
+
+.slick-slide.slick-active {
+  opacity: 1;
+}
+
+/* Setas personalizadas */
+.slick-prev:before, .slick-next:before {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 24px;
+}

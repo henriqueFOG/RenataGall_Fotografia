@@ -9,7 +9,8 @@ import {
   CardActionArea,
   Dialog,
   DialogContent,
-  DialogTitle
+  DialogTitle,
+  Box
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import AlbumSlider from '../components/AlbumSlider';
@@ -49,7 +50,6 @@ const albums: Album[] = [
       "/portfolio/aniversario/aniversario_heitor_piscina_de_bolinhas.jpg",
       "/portfolio/aniversario/aniversario_heitor_piscina_de_bolinhas2.jpg",
       "/portfolio/aniversario/aniversario_heitor_piscina_de_bolinhas3.jpg",
-      "/portfolio/aniversario/aniversario_heitor.jpg",
       "/portfolio/aniversario/aniversario_julia_luiza_bolo.jpg",
       "/portfolio/aniversario/aniversario_julia_luiza_bolo2.jpg",
       "/portfolio/aniversario/aniversario_julia_luiza_coracao.jpg"
@@ -113,19 +113,48 @@ export default function Portfolio() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: 'spring', stiffness: 200 }}
-              >
-                <Card>
+              >                <Card 
+                  sx={{ 
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    transition: 'transform 0.3s, box-shadow 0.3s',
+                    '&:hover': {
+                      boxShadow: 6,
+                    }
+                  }}
+                >
                   <CardActionArea onClick={() => setSelectedAlbum(album)}>
-                    <CardMedia
-                      component="img"
-                      image={album.cover}
-                      alt={album.title}
-                      sx={{
-                        height: { xs: 180, sm: 200, md: 250 },
-                        objectFit: 'cover'
+                    <Box sx={{ 
+                      position: 'relative',
+                      paddingTop: '75%', // Proporção 4:3 para manter consistência
+                      overflow: 'hidden'
+                    }}>
+                      <CardMedia
+                        component="img"
+                        image={album.cover}
+                        alt={album.title}
+                        sx={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          transition: 'transform 0.4s ease-in-out',
+                          '&:hover': {
+                            transform: 'scale(1.05)'
+                          }
+                        }}
+                      />
+                    </Box>
+                    <Typography 
+                      variant="h6" 
+                      align="center" 
+                      sx={{ 
+                        py: 2,
+                        fontWeight: 500
                       }}
-                    />
-                    <Typography variant="h6" align="center" sx={{ py: 2 }}>
+                    >
                       {album.title}
                     </Typography>
                   </CardActionArea>
@@ -134,18 +163,97 @@ export default function Portfolio() {
             </Grid>
           ))}
         </Grid>
-      </motion.div>
-
-      <Dialog
+      </motion.div>      <Dialog
         open={Boolean(selectedAlbum)}
         onClose={() => setSelectedAlbum(null)}
-        maxWidth="lg"
+        maxWidth="xl"
         fullWidth
+        PaperProps={{
+          sx: {
+            height: { xs: '90vh', sm: '90vh' },
+            maxHeight: '95vh',
+            borderRadius: { xs: 1, sm: 2 },
+            bgcolor: '#fafafa',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+            overflow: 'hidden'
+          }
+        }}
+        TransitionProps={{
+          timeout: 400
+        }}
+        sx={{
+          '.MuiDialog-paper': {
+            m: { xs: 1, sm: 2, md: 3 }
+          },
+          '.MuiBackdrop-root': {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)'
+          }
+        }}
       >
-        <DialogTitle>{selectedAlbum?.title}</DialogTitle>
-        <DialogContent>
-          {selectedAlbum && <AlbumSlider images={selectedAlbum.images} />}
-        </DialogContent>
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            height: '100%',
+            position: 'relative'
+          }}
+        >
+          <DialogTitle 
+            sx={{ 
+              textAlign: 'center', 
+              fontSize: { xs: '1.5rem', md: '2rem' },
+              pb: { xs: 0.5, sm: 1 },
+              pt: { xs: 2, sm: 2.5 },
+              fontWeight: 500,
+              color: '#222'
+            }}
+          >
+            {selectedAlbum?.title}
+          </DialogTitle>
+          <DialogContent 
+            sx={{ 
+              flex: 1,
+              pb: { xs: 2, sm: 3, md: 4 }, 
+              px: { xs: 1, sm: 2, md: 4 }, 
+              overflow: 'hidden',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            {selectedAlbum && <AlbumSlider images={selectedAlbum.images} />}
+          </DialogContent>
+          
+          <Box 
+            sx={{ 
+              position: 'absolute', 
+              top: 8, 
+              right: 8, 
+              zIndex: 10 
+            }}
+            onClick={() => setSelectedAlbum(null)}
+          >
+            <Box 
+              sx={{
+                width: { xs: 36, sm: 42 },
+                height: { xs: 36, sm: 42 },
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(255,255,255,0.7)',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.9)',
+                  transform: 'scale(1.1)'
+                }
+              }}
+            >
+              <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>✕</Typography>
+            </Box>
+          </Box>
+        </Box>
       </Dialog>
     </Container>
   );
